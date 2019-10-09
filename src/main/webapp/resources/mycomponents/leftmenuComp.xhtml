@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+          
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Això s'ignora també
+        
+        <composite:interface>
+            <composite:attribute name='elements' required="false"/>
+            <composite:attribute name='titol' required="true"/>
+        </composite:interface>
+        
+        <composite:implementation>
+            <strong><h:outputText value="#{cc.attrs.titol}"/></strong>
+            <ul>
+            <c:forEach items="#{cc.attrs.elements}" var="element">
+                <li>#{element}</li>
+            </c:forEach>
+            </ul>   
+        </composite:implementation>
+        
+        
+        
+    </h:body>
+</html>
+
