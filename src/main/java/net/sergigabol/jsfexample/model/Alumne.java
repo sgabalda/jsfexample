@@ -7,6 +7,8 @@ package net.sergigabol.jsfexample.model;
 
 import java.util.Date;
 import javax.enterprise.inject.Model;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 /**
  *
@@ -20,8 +22,28 @@ public class Alumne {
     private String cognom;
     private Date naixement;
     private int edat;
+    @PositiveOrZero
     private double credit;
     private Dni dni;
+    
+    private String estat;
+    private String provincia;
+
+    public String getEstat() {
+        return estat;
+    }
+
+    public void setEstat(String estat) {
+        this.estat = estat;
+    }
+
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
 
     
     public Date getNaixement() {

@@ -29,15 +29,19 @@
                         <h:message for="nom"/>
 
                         <h:outputLabel value="Cognom"/>
-                        <h:inputText id="cognom" value="#{alumne.cognom}" required="true" />
+                        <h:inputText id="cognom" value="#{alumne.cognom}" 
+                                     required="true" requiredMessage="El cognom no pot ser buit" />
                         <h:message for="cognom"/>
                         
                         <h:outputLabel value="edat"/>
-                        <h:inputText id="edat" value="#{alumne.edat}" required="true" />
+                        <h:inputText id="edat" value="#{alumne.edat}" required="true">
+                            <f:validateLongRange maximum="120" minimum="18"/>
+                        </h:inputText>
                         <h:message for="edat"/>
                         
-                        <h:outputLabel value="naixement"/>
-                        <h:inputText id="naixement" value="#{alumne.naixement}" required="true">
+                        <h:outputLabel value="naixement" rendered="#{alumne.edat lt 18}"/>
+                        <h:inputText id="naixement" value="#{alumne.naixement}" 
+                                     required="true" validator="#{datesBean.validateDatePast}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:inputText>
                         <h:message for="naixement"/>
@@ -51,12 +55,39 @@
                         <h:outputLabel value="dni"/>
                         <h:inputText id="dni" value="#{alumne.dni}" required="true">
                             <!-- <f:converter converterId="convertidorDni"/> -->
+                            <f:validator validatorId="dniValidator"/>
                         </h:inputText>
                         <h:message for="dni"/>
-                    
+                        
+                        <h:outputLabel value="estat"/>
+                        <h:selectOneMenu id="estat" value="#{alumne.estat}" required="true" 
+                                         valueChangeListener="#{alumneForm.estatChanged}"
+                                         onchange="submit()"
+                                         >
+                            <f:selectItems value="#{alumneForm.estats}"
+                                           var="est"
+                                           itemLabel="#{est}"
+                                           itemValue="#{est}"/>
+                        </h:selectOneMenu>
+                        <h:message for="estat"/>
+                        
+                        <!--
+                        <h:outputLabel value="provincia"/>
+                        <h:selectOneMenu id="provincia" value="#{alumne.provincia}" 
+                                         >
+                            <f:selectItems value="#{alumneForm.provincies}"
+                                           var="est"
+                                           itemLabel="#{est}"
+                                           itemValue="#{est}"/>
+                        </h:selectOneMenu>
+                        <h:message for="provincia"/>
+                        -->
                     </h:panelGrid>
-                    <h:commandButton value="Guardar" action="#{alumne.printAlumne}"/>
+                    <h:commandButton value="Guardar" action="#{alumneForm.processaEnviamentNouAlumne}">
+                        <f:actionListener type="net.sergigabol.jsfexample.listeners.SaveUserActionListener"/>
+                    </h:commandButton>
                 </h:form>
+                <f:phaseListener type="net.sergigabol.jsfexample.listeners.LoggerPhaseListener"/>
             </ui:define>
         </ui:composition>
 </html>

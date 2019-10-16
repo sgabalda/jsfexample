@@ -26,5 +26,27 @@
             </managed-bean-class>
             <managed-bean-scope>request</managed-bean-scope>
         </managed-bean>
+        <navigation-rule>
+            <from-view-id>/noualumne.xhtml</from-view-id>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <if>#{alumne.credit gt 0.0}</if>
+                <to-view-id>/index.xhtml</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>success</from-outcome>
+                <if>#{alumne.credit ge 0.0}</if>
+                <to-view-id>/success.xhtml</to-view-id>
+            </navigation-case>
+            <navigation-case>
+                <from-outcome>error</from-outcome>
+                <to-view-id>/severeError.xhtml</to-view-id> 
+            </navigation-case>
+        </navigation-rule>
+        <faces-config>
+            <lifecycle>
+                <phase-listener>net.sergigabol.jsfexample.listeners.LoggerPhaseListener</phase-listener>
+            </lifecycle>
+        </faces-config>
     </application>
 </faces-config>
