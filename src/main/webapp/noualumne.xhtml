@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:mycomponents="http://xmlns.jcp.org/jsf/composite/mycomponents"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+        <ui:composition template="/templates/maintemplate.xhtml">
+            <ui:define name="title">Pàgina inicial</ui:define>
+                
+            <ui:define name="topContent">
+                <h1>
+                    <h:outputText value="#{msg.apptitle}"></h:outputText></h1>
+            </ui:define>
+            <ui:define name="leftContent">
+                <mycomponents:leftmenuComp titol="Menu esquerre" elements='#{{
+                                "noualumne.xhtml" : "nou alumne",
+                                "noutema.xhtml" : "nou tema"
+                                }}'/>
+            </ui:define>
+            <ui:define name="mainContent">
+                <h:form>
+                    <h:panelGrid columns="3">
+                        
+                        <h:outputLabel value="Nom"/>
+                        <h:inputText id="nom" value="#{alumne.nom}" 
+                                     required="true"/>
+                        <h:message for="nom"/>
+
+                        <h:outputLabel value="Cognom"/>
+                        <h:inputText id="cognom" value="#{alumne.cognom}" required="true" />
+                        <h:message for="cognom"/>
+                        
+                        <h:outputLabel value="edat"/>
+                        <h:inputText id="edat" value="#{alumne.edat}" required="true" />
+                        <h:message for="edat"/>
+                        
+                        <h:outputLabel value="naixement"/>
+                        <h:inputText id="naixement" value="#{alumne.naixement}" required="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:inputText>
+                        <h:message for="naixement"/>
+                        
+                        <h:outputLabel value="credit"/>
+                        <h:inputText id="credit" value="#{alumne.credit}" required="true">
+                            <f:converter converterId="javax.faces.Double"/>
+                        </h:inputText>
+                        <h:message for="credit"/>
+                        
+                        <h:outputLabel value="dni"/>
+                        <h:inputText id="dni" value="#{alumne.dni}" required="true">
+                            <!-- <f:converter converterId="convertidorDni"/> -->
+                        </h:inputText>
+                        <h:message for="dni"/>
+                    
+                    </h:panelGrid>
+                    <h:commandButton value="Guardar" action="#{alumne.printAlumne}"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+</html>
+

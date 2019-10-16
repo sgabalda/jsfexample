@@ -8,16 +8,10 @@
         <ui:composition template="/templates/maintemplate.xhtml">
             <ui:define name="title">Pàgina inicial</ui:define>
                 
-            <ui:define name="topContent">
-                <h1>
-                    <h:outputText value="#{msg.apptitle}"></h:outputText></h1>
-            </ui:define>
+            <ui:define name="topContent"><h1>Pàgina inicial</h1></ui:define>
             <ui:define name="leftContent">
                 <mycomponents:leftmenuComp titol="Menu esquerre" 
-                    elements='#{{
-                                "noualumne.xhtml" : "nou alumne",
-                                "noutema.xhtml" : "nou tema"
-                                }}'/>
+                                           elements="#{['opcio1','opcio 2']}"/>
             </ui:define>
             <ui:define name="mainContent">Centre</ui:define>
         </ui:composition>

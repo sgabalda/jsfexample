@@ -1,0 +1,13 @@
+div#left{
+    float: left;
+    width:20%;
+    border:1px solid black;
+}
+div#center{
+    float: left;
+    width:70%;
+    border:1px solid green;
+}
+div#top{
+    color:red;
+}

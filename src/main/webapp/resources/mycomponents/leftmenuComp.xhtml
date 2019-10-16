@@ -5,9 +5,7 @@
       xmlns:composite="http://xmlns.jcp.org/jsf/composite"
           
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
+
     <h:body>
         Això s'ignora també
         
@@ -17,10 +15,11 @@
         </composite:interface>
         
         <composite:implementation>
+            <h:outputScript library="js" name="leftMenu.js" target="head"/>
             <strong><h:outputText value="#{cc.attrs.titol}"/></strong>
             <ul>
             <c:forEach items="#{cc.attrs.elements}" var="element">
-                <li>#{element}</li>
+                <li><h:outputLink value="#{element.key}">#{element.value}</h:outputLink></li>
             </c:forEach>
             </ul>   
         </composite:implementation>
